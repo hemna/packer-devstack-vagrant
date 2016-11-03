@@ -1,0 +1,33 @@
+#
+# Configuration to load the minimum OpenStack services, i.e. the base minus heat
+#
+[[local|localrc]]
+
+DATABASE_PASSWORD=hpinvent
+RABBIT_PASSWORD=hpinvent
+SERVICE_PASSWORD=hpinvent
+ADMIN_PASSWORD=hpinvent
+SERVICE_TOKEN=a682f596-76f3-11e3-b3b2-e716f9080d50
+
+# where the stack.sh log goes
+LOGFILE=$TOP_DIR/logs/stack.sh.log
+
+# where the screen logfiles go
+SCREEN_LOGDIR=$DEST/logs/screen
+
+GIT_BASE=${GIT_BASE:-http://git.openstack.org}
+
+# Nova VNC
+enable_service n-novnc
+
+# Disable heat, which is enabled by default
+disable_service heat h-api h-api-cfn h-api-cw h-eng
+
+HOST_IP=$(ip -o -4 addr show eth0 | sed 's#^.*inet \([0-9.]*\).*#\1#')
+
+# Use python-cinderclient from source
+LIBS_FROM_GIT="python-cinderclient"
+
+[[post-config|$GLANCE_API_CONF]]
+[DEFAULT]
+default_store=file

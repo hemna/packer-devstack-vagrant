@@ -1,0 +1,72 @@
+#
+# Configuration to load all OpenStack services
+#
+[[local|localrc]]
+
+DATABASE_PASSWORD=hpinvent
+RABBIT_PASSWORD=hpinvent
+SERVICE_PASSWORD=hpinvent
+ADMIN_PASSWORD=hpinvent
+SERVICE_TOKEN=a682f596-76f3-11e3-b3b2-e716f9080d50
+
+# where the stack.sh log goes
+LOGFILE=$TOP_DIR/logs/stack.sh.log
+
+# where the screen logfiles go
+SCREEN_LOGDIR=$DEST/logs/screen
+
+GIT_BASE=${GIT_BASE:-http://git.openstack.org}
+
+HOST_IP=$(ip -o -4 addr show eth0 | sed 's#^.*inet \([0-9.]*\).*#\1#')
+
+# Use python-cinderclient from source
+LIBS_FROM_GIT="python-cinderclient"
+
+# Nova VNC
+enable_service n-novnc
+
+# Swift
+enable_service s-proxy
+enable_service s-object
+enable_service s-container
+enable_service s-account
+enable_service c-bak
+SWIFT_HASH=66a3d6b56c1f479c8b4e70ab5c2000f5
+SWIFT_REPLICAS=1
+SWIFT_DATA_DIR=$DEST/data/swift
+
+# Neutron
+disable_service n-net
+enable_service q-svc
+enable_service q-agt
+enable_service q-dhcp
+enable_service q-13
+enable_service q-meta
+enable_service q-metering
+enable_service neutron
+enable_service q-lbaas
+enable_service q-fwaas
+
+# Heat
+enable_service heat
+enable_service h-api
+enable_service h-api-cfn
+enable_service h-api-cw
+enable_service h-eng
+
+# Sahara
+enable_service sahara
+
+# Trove
+enable_service trove tr-api tr-tmgr tr-cond
+
+# Ceilometer
+enable_service ceilometer-acompute
+enable_service ceilometer-acentral
+enable_service ceilometer-anotification
+enable_service ceilometer-collector
+enable_service ceilometer-api
+
+[[post-config|$GLANCE_API_CONF]]
+[DEFAULT]
+default_store=file

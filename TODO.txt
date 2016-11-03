@@ -1,0 +1,7 @@
+write a timestamp into the vm 
+fix the timezone
+
+copy images from locally if present, rather than always wget'ing them
+create boxes for virtualbox
+create boxes for stable/icehouse and stable/juno
+

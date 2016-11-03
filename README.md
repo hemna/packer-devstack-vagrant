@@ -1,12 +1,12 @@
 packer-devstack-vagrant
 =======================
 
-Create an Ubuntu 14.04 vagrant box with packer that has devstack installed on it, as well as all of its
-prerequisites.
+Create an Ubuntu 16.04 vagrant box with packer that has devstack installed on
+it, as well as all of its prerequisites.
 
 ### Usage
 ```
-$ git clone git@csim-gitlab.rose.hp.com:support/packer-devstack-vagrant.git
+$ git clone https://github.com/hemna/packer-devstack-vagrant
 $ cd packer-devstack-vagrant
 $ ./build.sh
 ```

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This script uses packer to create vagrant box images that have devstack 
+# pre-installed and all requirements installed. 
+# The script will copy the built box to ~/images/vagrant 
+# 
 # This solution supports several "flavors":
 #   all  - starts all devstack processes (sahara, trove, etc).
 #   base - starts only the default devstack processes (nova, glance, keystone, cinder)
@@ -8,6 +12,14 @@
 # Usage:
 #    ./build.sh [flavor..]
 #
+
+IMAGES_DIR="$HOME/images/vagrant"
+
+if [ ! -d "$IMAGES_DIR" ]
+then
+    echo "Please create '$IMAGES_DIR' to store the vagrant box images."
+    exit 1
+fi
 
 # Build the following by default
 flavors=${@:-"all"}
@@ -40,7 +52,7 @@ VERSION
     if [[ $? -eq 0 ]] ; then
         # Rename resulting file to be current date/time (or BUILD_ID if running from
         # jenkins)
-
-        mv packer_qemu_libvirt.box ${BUILD_ID}_${flavor}.box
+        echo "Moving ${BUILD_ID}_${flavor}.box to $IMAGES_DIR"
+        mv packer_qemu_libvirt.box $IMAGES_DIR/${BUILD_ID}_${flavor}.box
     fi
 done

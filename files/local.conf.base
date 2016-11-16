@@ -3,10 +3,10 @@
 #
 [[local|localrc]]
 
-DATABASE_PASSWORD=hpinvent
-RABBIT_PASSWORD=hpinvent
-SERVICE_PASSWORD=hpinvent
-ADMIN_PASSWORD=hpinvent
+DATABASE_PASSWORD=openstack
+RABBIT_PASSWORD=openstack
+SERVICE_PASSWORD=openstack
+ADMIN_PASSWORD=openstack
 SERVICE_TOKEN=a682f596-76f3-11e3-b3b2-e716f9080d50
 
 # where the stack.sh log goes

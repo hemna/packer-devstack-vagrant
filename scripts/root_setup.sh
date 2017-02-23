@@ -31,9 +31,10 @@ apt-get -y -q install python-pip git ntp git-review firefox xvfb htop tig gitk c
     vim-gtk exuberant-ctags chromium-browser vim-python-jedi meld \
     python-dev python3-dev libmysqlclient-dev \
     nfs-kernel-server nfs-common fortune-mod \
-    libffi-dev libssl-dev
+    libffi-dev libssl-dev nodejs nodejs-dev
 
-pip install flake8 rstcheck
+pip install -U pip
+pip install flake8 rstcheck shyaml
 
 gem install gist
 

@@ -2,7 +2,7 @@
   "variables": {
     "compression_level": "6",
     "cpus": "1",
-    "disk_size": "20000",
+    "disk_size": "40000",
     "headless": "true",
     "iso_checksum": "29a8b9009509b39d542ecb229787cdf48f05e739a932289de9e9858d7c487c80",
     "iso_checksum_type": "sha256",
